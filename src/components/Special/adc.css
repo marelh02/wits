@@ -1,0 +1,6 @@
+img
+{
+    --dim: 250px;
+    max-width: var(--dim);
+    max-height: var(--dim);
+}
