@@ -3,11 +3,11 @@ import { SaveAs } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import ArticleDescriptionObj from "../Classes/ArticleDescriptionObj";
 import { useSelector } from "react-redux";
-import { witsHTTPSettings } from "../witsHTTPSettings";
+import { witsHTTPEndpoints } from "../witsHTTPEndpoints";
 import { setTopics, setCoverImg } from "../descriptionSlice"
 import { useDispatch } from "react-redux";
-import { currentUserInfo } from "../witsAppVariables";
-import ArticleDescriptionForm from "../Special/ArticleDescriptionForm";
+import ArticleDescriptionForm from "../ElementalComponents/ArticleDescriptionForm";
+import { witsgetfullname, witsgetUserId } from "../witsUserSession";
 
 
 
@@ -27,6 +27,12 @@ export default function ModifyArticleDescription() {
 
     const descriptionHandler = async () => {
 
+        let fn= await witsgetfullname()
+        let currentUserInfo = {
+            fullName: fn,
+            userId: witsgetUserId()
+        }
+
         const des = new ArticleDescriptionObj(
             document.getElementById("ArticleTitle").value,
             reduxCoverImg,
@@ -35,9 +41,9 @@ export default function ModifyArticleDescription() {
             reduxTopics,
             currentUserInfo
         )
-        des.articleID=data.articleID
+        des.identifiant=data.identifiant
         
-        await fetch(witsHTTPSettings.updateArticleDescriptionEP, {
+        await fetch(witsHTTPEndpoints.updateArticleDescriptionEP, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',

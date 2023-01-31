@@ -3,11 +3,12 @@ import { SaveAs } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ArticleDescriptionObj from "../Classes/ArticleDescriptionObj";
 import { useSelector } from "react-redux";
-import { witsHTTPSettings } from "../witsHTTPSettings";
+import { witsHTTPEndpoints } from "../witsHTTPEndpoints";
 import { setTopics, setCoverImg } from "../descriptionSlice"
 import { useDispatch } from "react-redux";
-import { currentUserInfo } from "../witsAppVariables";
-import ArticleDescriptionForm from "../Special/ArticleDescriptionForm";
+import ArticleDescriptionForm from "../ElementalComponents/ArticleDescriptionForm";
+import { witsgetfullname, witsgetUserId } from "../witsUserSession";
+import { logDOM } from "@testing-library/react";
 
 
 
@@ -22,6 +23,16 @@ export default function NewArticleDescription(props=null) {
 
     const descriptionHandler = async () => {
 
+        console.log("heyyy");
+
+        let fn= await witsgetfullname()
+        
+        let currentUserInfo = {
+            fullName: fn,
+            userId: witsgetUserId()
+        }
+
+
         const des = new ArticleDescriptionObj(
             document.getElementById("ArticleTitle").value,
             reduxCoverImg,
@@ -30,8 +41,10 @@ export default function NewArticleDescription(props=null) {
             reduxTopics,
             currentUserInfo
         )
-        
-        await fetch(witsHTTPSettings.newArticleDescriptionEP, {
+
+        console.log(des);
+
+        await fetch(witsHTTPEndpoints.newArticleDescriptionEP, {
             method: 'post',
             mode: 'cors',
             headers: {
@@ -45,7 +58,7 @@ export default function NewArticleDescription(props=null) {
         console.log("New article description saved succesfully");
             dispatch(setCoverImg(""))
             dispatch(setTopics(["",]))
-            navigate("/editteur/" + des.articleID)
+            navigate("/editteur/" + des.identifiant)
             
 
     };

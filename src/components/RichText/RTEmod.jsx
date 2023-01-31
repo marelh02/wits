@@ -8,7 +8,7 @@ import ImageTool from '@editorjs/image';
 import SimpleImage from '@editorjs/simple-image';
 import SaveIcon from '@mui/icons-material/Save';
 import { Button } from '@mui/material';
-import { witsHTTPSettings } from '../witsHTTPSettings';
+import { witsHTTPEndpoints } from '../witsHTTPEndpoints';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
@@ -89,12 +89,12 @@ export default function RTEmod(props){
   async function handleRTE() {
     const outputData= await editor.save()
 
-    await fetch(witsHTTPSettings.updateArticleEP, {
+    await fetch(witsHTTPEndpoints.updateArticleEP, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({articleID:idArticle,blocks: outputData.blocks})
+      body: JSON.stringify({identifiant:idArticle,blocks: outputData.blocks})
     })
     console.log("Article saved!")
     navigate("/mes_articles")

@@ -3,11 +3,11 @@ export default class ArticleDescriptionObj {
     
         this.title=title;
         this.coverImg=coverImg;
-        this.writerFullName=`${currentUserInfo.name} ${currentUserInfo.familyName}`
+        this.writerFullName=currentUserInfo.fullName
         this.writerId=currentUserInfo.userId;
         this.creationDate=creationDate;
         this.description=description;
         this.topics=topics;        
-        this.articleID=this.writerId+"_"+creationDate;
+        this.identifiant=this.writerId+"_"+creationDate;
     }
   }

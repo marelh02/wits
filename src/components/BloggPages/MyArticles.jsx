@@ -1,5 +1,5 @@
-import MyArticleDescriptionCard from "../Special/MyArticleDescriptionCard";
-import { useLoaderData } from "react-router-dom";
+import MyArticleDescriptionCard from "../ElementalComponents/MyArticleDescriptionCard";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -7,7 +7,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { witsHTTPSettings } from "../witsHTTPSettings";
+import { witsHTTPEndpoints } from "../witsHTTPEndpoints";
+import { witsisLoged } from "../witsUserSession";
 
 
 
@@ -26,7 +27,7 @@ export default function MyArticles() {
   };
 
   const handleDelete=async ()=>{
-    await fetch(witsHTTPSettings.deleteMyArticleEP+"/"+toDelete, {
+    await fetch(witsHTTPEndpoints.deleteMyArticleEP+"/"+toDelete, {
         method: 'DELETE'
     })
     console.log("Article deleted successfully")

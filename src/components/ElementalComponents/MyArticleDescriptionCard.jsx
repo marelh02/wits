@@ -37,10 +37,10 @@ export default function MyArticleDescriptionCard(props) {
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small" component={Link} to={"/articles/"+d.articleID}>Lire</Button>
+        <Button size="small" component={Link} to={"/articles/"+d.identifiant}>Lire</Button>
         <Button size="small" component={Link} to={"/modifier_description"} state={{data:d}}>modifier description</Button>
-        <Button size="small" component={Link} to={"/modifier_article/"+d.articleID}>modifier article</Button>
-        <Button size="small" onClick={()=>props.deleteAction(d.articleID)}>supprimer</Button>    
+        <Button size="small" component={Link} to={"/modifier_article/"+d.identifiant}>modifier article</Button>
+        <Button size="small" onClick={()=>props.deleteAction(d.identifiant)}>supprimer</Button>    
       </CardActions>
     </Card>
   );

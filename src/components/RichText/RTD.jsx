@@ -6,7 +6,7 @@ import Quote from '@editorjs/quote';
 import Table from '@editorjs/table';
 import ImageTool from '@editorjs/image';
 import SimpleImage from '@editorjs/simple-image';
-import { witsHTTPSettings } from '../witsHTTPSettings';
+import { witsHTTPEndpoints } from '../witsHTTPEndpoints';
 import "./rtd.css"
 
 

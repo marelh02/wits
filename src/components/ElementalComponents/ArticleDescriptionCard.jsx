@@ -37,7 +37,7 @@ export default function ArticleDescriptionCard(props) {
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small" component={Link} to={"/articles/"+d.articleID}>Lire</Button>
+        <Button size="small" component={Link} to={"/articles/"+d.identifiant}>Lire</Button>
       </CardActions>
     </Card>
   );

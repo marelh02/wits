@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import ArticleDescriptionCard from "../Special/ArticleDescriptionCard";
+import ArticleDescriptionCard from "../ElementalComponents/ArticleDescriptionCard";
 
 
 export default function Articles(){
